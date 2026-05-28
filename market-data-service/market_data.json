@@ -1,0 +1,102 @@
+[
+  {
+    "ticker": "AAPL",
+    "volatility": 0.02,
+    "price": 292.32
+  },
+  {
+    "ticker": "MSFT",
+    "volatility": 0.018,
+    "price": 420.43
+  },
+  {
+    "ticker": "NVDA",
+    "volatility": 0.05,
+    "price": 248.74
+  },
+  {
+    "ticker": "GOOGL",
+    "volatility": 0.02,
+    "price": 414.19
+  },
+  {
+    "ticker": "AMZN",
+    "volatility": 0.025,
+    "price": 254.11
+  },
+  {
+    "ticker": "META",
+    "volatility": 0.03,
+    "price": 626.54
+  },
+  {
+    "ticker": "TSLA",
+    "volatility": 0.06,
+    "price": 428.58
+  },
+  {
+    "ticker": "NFLX",
+    "volatility": 0.03,
+    "price": 88.41
+  },
+  {
+    "ticker": "JPM",
+    "volatility": 0.015,
+    "price": 298.16
+  },
+  {
+    "ticker": "BAC",
+    "volatility": 0.014,
+    "price": 50.65
+  },
+  {
+    "ticker": "WFC",
+    "volatility": 0.013,
+    "price": 73.66
+  },
+  {
+    "ticker": "GS",
+    "volatility": 0.02,
+    "price": 1015.14
+  },
+  {
+    "ticker": "KO",
+    "volatility": 0.01,
+    "price": 81.58
+  },
+  {
+    "ticker": "PEP",
+    "volatility": 0.01,
+    "price": 148.37
+  },
+  {
+    "ticker": "PG",
+    "volatility": 0.012,
+    "price": 140.43
+  },
+  {
+    "ticker": "JNJ",
+    "volatility": 0.011,
+    "price": 229.57
+  },
+  {
+    "ticker": "DIS",
+    "volatility": 0.025,
+    "price": 106.05
+  },
+  {
+    "ticker": "INTC",
+    "volatility": 0.03,
+    "price": 115.22
+  },
+  {
+    "ticker": "AMD",
+    "volatility": 0.045,
+    "price": 470.26
+  },
+  {
+    "ticker": "ORCL",
+    "volatility": 0.018,
+    "price": 192.22
+  }
+]

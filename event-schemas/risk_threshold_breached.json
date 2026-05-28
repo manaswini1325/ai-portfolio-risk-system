@@ -1,0 +1,87 @@
+{
+  "eventType": "RiskThresholdBreached",
+  "description": "Published by Risk Service when any of 3 risk rules triggers for a portfolio",
+  "source": "risk-service-lambda",
+  "destination": "SNS: risk-alerts-topic → SQS: ai-queue",
+  "version": "1.0",
+  "rules": {
+    "DAILY_LOSS_BREACH": "Portfolio daily drop exceeds 3%",
+    "SINGLE_STOCK_CONCENTRATION": "Single stock weight exceeds 20% of portfolio",
+    "ALLOCATION_DRIFT": "Stock weight drifts more than 5% from model target weight"
+  },
+  "schema": {
+    "eventType": "string",
+    "portfolioId": "string - format port-001 to port-100",
+    "clientName": "string",
+    "alertType": "enum: DAILY_LOSS_BREACH | SINGLE_STOCK_CONCENTRATION | ALLOCATION_DRIFT",
+    "severity": "enum: HIGH | MEDIUM | LOW",
+    "style": "enum: CON | BAL | AGG",
+    "totalValue": "float - current portfolio value in USD",
+    "dailyChange": "float - percentage change from market open",
+    "details": {
+      "ticker": "string - stock ticker symbol",
+      "message": "string - human readable description of breach",
+      "threshold": "float - the threshold that was breached",
+      "weight": "float - current stock weight (for concentration rule)",
+      "actualWeight": "float - actual allocation (for drift rule)",
+      "modelWeight": "float - target model allocation (for drift rule)",
+      "drift": "float - deviation from model in percentage points"
+    },
+    "timestamp": "ISO8601 datetime string"
+  },
+  "examples": [
+    {
+      "eventType": "RiskThresholdBreached",
+      "portfolioId": "port-001",
+      "clientName": "Tushar Nagpal",
+      "alertType": "SINGLE_STOCK_CONCENTRATION",
+      "severity": "HIGH",
+      "style": "CON",
+      "totalValue": 198450.00,
+      "dailyChange": -1.2,
+      "details": {
+        "ticker": "NVDA",
+        "weight": 28.3,
+        "threshold": 20,
+        "message": "NVDA is 28.3% of portfolio, exceeding 20% limit"
+      },
+      "timestamp": "2026-05-18T13:00:10Z"
+    },
+    {
+      "eventType": "RiskThresholdBreached",
+      "portfolioId": "port-027",
+      "clientName": "Anjali Singh",
+      "alertType": "DAILY_LOSS_BREACH",
+      "severity": "HIGH",
+      "style": "BAL",
+      "totalValue": 26267.48,
+      "dailyChange": -77.02,
+      "details": {
+        "ticker": "PORTFOLIO",
+        "threshold": -3,
+        "message": "Portfolio dropped 77.02% today breaching 3% daily loss limit"
+      },
+      "timestamp": "2026-05-18T13:00:12Z"
+    },
+    {
+      "eventType": "RiskThresholdBreached",
+      "portfolioId": "port-020",
+      "clientName": "Manish Tiwari",
+      "alertType": "ALLOCATION_DRIFT",
+      "severity": "MEDIUM",
+      "style": "BAL",
+      "totalValue": 52119.00,
+      "dailyChange": -74.97,
+      "details": {
+        "ticker": "ORCL",
+        "actualWeight": 34.53,
+        "modelWeight": 21.0,
+        "drift": 13.53,
+        "direction": "overweight",
+        "threshold": 5,
+        "message": "ORCL is overweight by 13.53% from model target"
+      },
+      "timestamp": "2026-05-18T13:00:14Z"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "eventType": "PortfolioRevalued",
+  "description": "Emitted internally by Risk Service after recalculating portfolio value with live prices each tick. Updates DynamoDB Portfolios table.",
+  "source": "risk-service-lambda",
+  "destination": "DynamoDB: Portfolios table",
+  "version": "1.0",
+  "schema": {
+    "portfolioId": "string - format port-001 to port-100",
+    "clientName": "string",
+    "totalValue": "float - recalculated portfolio value in USD",
+    "dayChangePer": "float - percentage change from dailyOpenValue",
+    "riskLevel": "enum: HIGH | MEDIUM | LOW",
+    "lastUpdated": "ISO8601 datetime string",
+    "holdings": [
+      {
+        "ticker": "string - stock ticker",
+        "quantity": "integer - shares owned",
+        "livePrice": "float - current market price",
+        "currentValue": "float - quantity x livePrice",
+        "currentWeight": "float - percentage of total portfolio",
+        "modelWeight": "float - target weight from investment mandate"
+      }
+    ]
+  },
+  "example": {
+    "portfolioId": "port-001",
+    "clientName": "Tushar Nagpal",
+    "totalValue": 198450.00,
+    "dayChangePer": -1.2,
+    "riskLevel": "HIGH",
+    "lastUpdated": "2026-05-18T13:00:10Z",
+    "holdings": [
+      {
+        "ticker": "NVDA",
+        "quantity": 34,
+        "livePrice": 247.31,
+        "currentValue": 8408.54,
+        "currentWeight": 28.3,
+        "modelWeight": 15.0
+      },
+      {
+        "ticker": "AAPL",
+        "quantity": 20,
+        "livePrice": 292.18,
+        "currentValue": 5843.60,
+        "currentWeight": 19.6,
+        "modelWeight": 20.0
+      }
+    ]
+  }
+}
